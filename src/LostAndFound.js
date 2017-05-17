@@ -1,11 +1,13 @@
 import React, {Component} from 'react'
-import {BrowserRouter} from 'react-router-dom'
+import {BrowserRouter, Route} from 'react-router-dom'
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 import reducer from './reducers/Reducer'
-import NavBar from './navbar/NavBar'
 
-const store = createStore(reducer, {userState: true});
+import NavBar from './navbar/NavBar'
+import LoginUI from './login/Login'
+
+const store = createStore(reducer, {userState: false});
 
 class LostAndFound extends Component {
   render() {
@@ -14,6 +16,7 @@ class LostAndFound extends Component {
         <BrowserRouter>
           <div>
             <NavBar/>
+            <Route path={"/login"} component={LoginUI}/>
           </div>
         </BrowserRouter>
       </Provider>

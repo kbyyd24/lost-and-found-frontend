@@ -7,9 +7,9 @@ class NavBarUI extends Component {
     let button;
     const {userState, onButtonClick} = this.props;
     if (userState) {
-      button = <button onClick={onButtonClick} className="btn btn-default navbar-btn">Sign out</button>
+      button = <button className="btn btn-default navbar-btn">Sign out</button>
     } else {
-      button = <button onClick={onButtonClick} className="btn btn-success navbar-btn">Sign in</button>;
+      button = <button className="btn btn-success navbar-btn"><Link to={"/login"}>login</Link></button>;
     }
     return (
       <nav className="navbar navbar-default navbar-static-top">
