@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {BrowserRouter, Route} from 'react-router-dom'
-import {createStore} from 'redux'
+import {createStore, applyMiddleware} from 'redux'
+import thunk from 'redux-thunk'
 import {Provider} from 'react-redux'
 import reducer from './reducers/Reducer'
 
@@ -8,7 +9,9 @@ import NavBar from './navbar/NavBar'
 import Login from './login/Login'
 import SignIn from './signIn/SignIn'
 
-const store = createStore(reducer, {userState: false});
+import initialState from './StateCreator'
+
+const store = createStore(reducer, initialState, applyMiddleware(thunk));
 
 class LostAndFound extends Component {
   render() {
