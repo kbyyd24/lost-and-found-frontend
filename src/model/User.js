@@ -3,6 +3,7 @@ class User {
     this.username = '';
     this.token = '';
     this.email = '';
+    this.state = false;
   }
   saveLoginMessage = (useranme, token) => {
     this.username = useranme;
