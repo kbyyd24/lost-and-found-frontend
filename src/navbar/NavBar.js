@@ -11,8 +11,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onButtonClick: () => {
       dispatch({
-        type: 'CHANGE_STATE',
-        userState: !ownProps.userState
+        type: 'CHANGE_STATE'
       })
     }
   }
