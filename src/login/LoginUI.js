@@ -18,6 +18,23 @@ class LoginUI extends Component {
   };
 
   render() {
+    const {state, msg} = this.props;
+    let className;
+    switch (state) {
+      case 100:
+        className = "alert alert-info";
+        break;
+      case 200:
+        className = "alert alert-success";
+        break;
+      case 400:
+        className = "alert alert-warning";
+        break;
+      default:
+        className = null;
+    }
+    let signInMsgHTML = className === null ? null :
+      <div className={className}><span>{msg}</span></div>;
     return (
       <div>
         <div className="col-lg-3"></div>
@@ -40,6 +57,7 @@ class LoginUI extends Component {
               <input className="form-control" name="password" placeholder="密码" type="password"/>
             </div>
           </div>
+          {signInMsgHTML}
           <div>
             <button className="btn btn-success" onClick={this.login}>登录</button>
           </div>
