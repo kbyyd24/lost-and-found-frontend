@@ -1,12 +1,11 @@
-import {sign_in, login, log_out} from '../config/ActionNames'
+import {sign_in, login, log_out, lost_page} from '../config/ActionNames'
 import User from '../model/User'
 
 const reducer = (state, action) => {
   let newState = Object.assign({}, state);
   switch (action.type) {
     case sign_in.sign_in_pending:
-      newState.user.signIn.msg = 'pending';
-      newState.user.signIn.state = 100;
+      newState.user.signIn = {msg: 'pending', state: 100};
       return newState;
     case sign_in.sign_in_success:
     case sign_in.sign_in_failed:
@@ -44,6 +43,17 @@ const reducer = (state, action) => {
       return newState;
     case log_out.clean:
       newState.user.logout = {msg: null, state:0};
+      return newState;
+    case lost_page.pending:
+      newState.lostItemPage.state = {msg: 'pending', state: 100};
+      return newState;
+    case lost_page.success:
+      newState.lostItemPage.lostItems = action.lostItems;
+      newState.lostItemPage.page = action.page;
+      newState.lostItemPage.state = {msg: 'success', state: 200};
+      return newState;
+    case lost_page.failed:
+      newState.lostItemPage.state = {msg: action.msg, state: 400};
       return newState;
     default:
       return state

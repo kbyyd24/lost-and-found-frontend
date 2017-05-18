@@ -16,3 +16,9 @@ export const log_out = {
   failed: 'log_out_failed',
   clean: 'clean_log_out_message'
 };
+
+export const lost_page = {
+  pending: 'lost_page_pending',
+  success: 'lost_page_success',
+  failed: 'lost_page_failed'
+};

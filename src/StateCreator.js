@@ -1,5 +1,15 @@
 import User from './model/User'
 
-const user = new User();
+let user = new User();
 
-export default {user}
+let lostItems = [];
+
+let lostItemPage = {
+  state: {msg: null, state: 0},
+  page: 1,
+  listSize: 8,
+  sort: 'createTime',
+  lostItems
+};
+
+export default {user, lostItemPage}
