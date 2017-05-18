@@ -9,9 +9,26 @@ class SignInUI extends Component {
     const inputs = [...document.getElementsByTagName('input')]
       .map(element => ({key: element.name, value: element.value}));
     signIn(inputs);
-  }
+  };
 
   render() {
+    const {signInObj} = this.props;
+    let className;
+    switch (signInObj.state) {
+      case 100:
+        className = "alert alert-info";
+        break;
+      case 200:
+        className = "alert alert-success";
+        break;
+      case 400:
+        className = "alert alert-warning";
+        break;
+      default:
+        className = null;
+    }
+    let signInMsgHTML = className === null ? null :
+      <div className={className}><span>{signInObj.msg}</span></div>;
     return (
       <div>
         <div className="col-lg-3"></div>
@@ -38,6 +55,7 @@ class SignInUI extends Component {
               <input className="form-control" name="password" placeholder="密码" type="password"/>
             </div>
           </div>
+          {signInMsgHTML}
           <div>
             <button className="btn btn-success" onClick={this.signIn}>注册</button>
           </div>

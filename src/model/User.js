@@ -4,8 +4,14 @@ class User {
     this.token = null;
     this.email = null;
     this.state = false;
-    this.signIn = null;
-    this.logIn = null;
+    this.signIn = {
+      msg: null,
+      state: 0
+    };
+    this.logIn = {
+      msg: null,
+      state: 0
+    };
   }
   saveLoginMessage = (useranme, token) => {
     this.username = useranme;

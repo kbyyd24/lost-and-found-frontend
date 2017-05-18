@@ -1,12 +1,13 @@
 import {connect} from 'react-redux'
 import SignInUI from './SignInUI'
+import {sign_in} from '../config/ActionNames'
 
 const mapStateToProps = (state) => {
-  return state
+  return {signInObj: state.user.signIn}
 };
 
 const fetchToSignIn = (signInUser) => dispatch => {
-  dispatch({type: 'SIGN_IN_PENDING'});
+  dispatch({type: sign_in.sign_in_pending});
   const postHeaders = new Headers({
     'Access-Control-Allow-Origin': 'http://localhost:3000',
     'Content-Type': 'application/json'
@@ -27,16 +28,17 @@ const fetchToSignIn = (signInUser) => dispatch => {
       }
     })
     .then(body => {
-      console.log(body);
       dispatch({
-        type: 'SIGN_IN_SUCCESS',
-        msg: body.msg
+        type: sign_in.sign_in_success,
+        msg: body.msg,
+        state: 200
       })
     })
     .catch(error => {
       dispatch({
-        type: 'SIGN_IN_FAILED',
-        msg: error.message
+        type: sign_in.sign_in_failed,
+        msg: error.message,
+        state: 400
       })
     })
 };
