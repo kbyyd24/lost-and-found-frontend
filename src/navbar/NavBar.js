@@ -2,9 +2,11 @@ import {connect} from 'react-redux'
 import NavBarUI from './NavBarUI'
 
 const mapStateToProps = (state) => {
-  return {
-    userState: state.userState
+  const user = state.user;
+  if (user.state) {
+    return {username: user.username};
   }
+  return {}
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {

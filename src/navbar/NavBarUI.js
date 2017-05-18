@@ -4,12 +4,17 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.css'
 
 class NavBarUI extends Component {
   render() {
-    let button;
-    const {userState} = this.props;
-    if (userState) {
-      button = <button className="btn btn-default navbar-btn">Sign out</button>
+    let userButton, usernameHtml;
+    const {username} = this.props;
+    if (username === undefined) {
+      userButton = <li>
+        <button className="btn btn-success navbar-btn"><Link to={"/login"}>login</Link></button>
+      </li>;
     } else {
-      button = <button className="btn btn-success navbar-btn"><Link to={"/login"}>login</Link></button>;
+      userButton = (<li>
+        <button className="btn btn-default navbar-btn">logout</button>
+      </li>);
+      usernameHtml = <li><Link to={`/user/home/${username}`}>{username}</Link></li>
     }
     return (
       <nav className="navbar navbar-default navbar-static-top">
@@ -21,8 +26,9 @@ class NavBarUI extends Component {
             <ul className="nav navbar-nav">
               <li><Link to="/losts">失物信息</Link></li>
               <li><Link to="/founds">拾物信息</Link></li>
+              {userButton}
+              {usernameHtml}
             </ul>
-            {button}
           </div>
         </div>
       </nav>
