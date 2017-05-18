@@ -12,7 +12,6 @@ const mapStateToProps = (state) => {
 const fetchToSignIn = (signInUser) => dispatch => {
   dispatch({type: sign_in.sign_in_pending});
   const postHeaders = new Headers({
-    'Access-Control-Allow-Origin': 'http://localhost:3000',
     'Content-Type': 'application/json'
   });
   const postInit = {

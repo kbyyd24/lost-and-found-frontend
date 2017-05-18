@@ -8,7 +8,6 @@ const {protocol, host, port, baseURI} = userServer;
 const fetchToLogin = logInUser => dispatch => {
   dispatch({type: login.pending});
   const postHeaders = new Headers({
-    'Access-Control-Allow-Origin': 'http://localhost:3000',
     'content-type': 'application/json'
   });
   const requestInit = {

@@ -8,7 +8,6 @@ const {protocol, host, port, baseURI} = userServer;
 const fetchToLogOut = (username, token) => dispatch => {
   dispatch({type: log_out.pending});
   const deleteHeaders = new Headers({
-    'Access-Control-Allow-Origin': 'http://localhost:3000',
     'user-token': token
   });
   const requestInit = {
