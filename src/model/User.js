@@ -1,9 +1,11 @@
 class User {
   constructor() {
-    this.username = '';
-    this.token = '';
-    this.email = '';
+    this.username = null;
+    this.token = null;
+    this.email = null;
     this.state = false;
+    this.signIn = null;
+    this.logIn = null;
   }
   saveLoginMessage = (useranme, token) => {
     this.username = useranme;
@@ -13,9 +15,9 @@ class User {
     this.email = email;
   };
   logout = () => {
-    this.username = '';
-    this.token = '';
-    this.email = '';
+    this.username = null;
+    this.token = null;
+    this.email = null;
   };
 }
 
