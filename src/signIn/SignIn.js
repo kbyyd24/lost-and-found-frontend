@@ -22,24 +22,25 @@ const fetchToSignIn = (signInUser) => dispatch => {
     .then(response => {
       console.log(response);
       if (response.status === 200) {
-        return response.json();
+        response.json()
+          .then(body => {
+            dispatch({
+              type: sign_in.sign_in_success,
+              msg: body.msg,
+              state: 200
+            })
+          })
       } else {
-        throw new Error(response.json().msg);
+        response.json()
+          .then(errorBody => {
+            console.log(errorBody);
+            dispatch({
+              type: sign_in.sign_in_failed,
+              msg: errorBody.msg,
+              state: 400
+            })
+          })
       }
-    })
-    .then(body => {
-      dispatch({
-        type: sign_in.sign_in_success,
-        msg: body.msg,
-        state: 200
-      })
-    })
-    .catch(error => {
-      dispatch({
-        type: sign_in.sign_in_failed,
-        msg: error.message,
-        state: 400
-      })
     })
 };
 
