@@ -1,4 +1,4 @@
-import {sign_in, login} from '../config/ActionNames'
+import {sign_in, login, log_out} from '../config/ActionNames'
 import User from '../model/User'
 
 const reducer = (state, action) => {
@@ -19,6 +19,7 @@ const reducer = (state, action) => {
       };
       return newState;
     case login.success:
+      newState.user = new User();
       newState.user.username = action.user.username;
       newState.user.email = action.user.email;
       newState.user.token = action.user.token;
@@ -30,6 +31,16 @@ const reducer = (state, action) => {
         msg: action.msg,
         state: 400
       };
+      return newState;
+    case log_out.pending:
+      newState.user.logout = {msg: 'pending', state: 100};
+      return newState;
+    case log_out.success:
+      newState.user = new User();
+      newState.user.logout = {msg: action.msg, state: 200};
+      return newState;
+    case log_out.failed:
+      newState.user.logout = {msg: action.msg, state: 400};
       return newState;
     default:
       return state

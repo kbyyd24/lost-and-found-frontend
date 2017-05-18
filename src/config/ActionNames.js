@@ -9,3 +9,9 @@ export const login = {
   success: 'login_success',
   failed: 'login_failed'
 };
+
+export const log_out = {
+  pending: 'log_out_pending',
+  success: 'log_out_success',
+  failed: 'log_out_failed'
+};

@@ -1,16 +1,59 @@
 import {connect} from 'react-redux'
 import NavBarUI from './NavBarUI'
+import {log_out} from '../config/ActionNames'
+
+
+const fetchToLogOut = (username, token) => dispatch => {
+  dispatch({type: log_out.pending});
+  const deleteHeaders = new Headers({
+    'Access-Control-Allow-Origin': 'http://localhost:3000',
+    'user-token': token
+  });
+  const requestInit = {
+    headers: deleteHeaders,
+    method: 'DELETE'
+  };
+  const request = new Request(`http://localhost:8080/user/login/${username}`, requestInit);
+  fetch(request)
+    .then(response => {
+      if (response.ok) {
+        response.json()
+          .then(body => {
+            dispatch({
+              type: log_out.success,
+              msg: body.msg
+            })
+          })
+      } else {
+        response.json()
+          .then(body => {
+            dispatch({
+              type: log_out.failed,
+              msg: body.msg
+            })
+          })
+      }
+    })
+};
 
 const mapStateToProps = (state) => {
   const user = state.user;
+  let resultProps = {};
   if (user.state) {
-    return {username: user.username};
+    resultProps = {username: user.username, token: user.token};
   }
-  return {}
+  if (user.logout.state !== 0) {
+    resultProps.logoutObj = user.logout;
+  }
+  return resultProps
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logout: (username, token) => {
+      dispatch(fetchToLogOut(username, token));
+    }
+  }
 };
 
 const NavBar = connect(mapStateToProps, mapDispatchToProps)(NavBarUI);
