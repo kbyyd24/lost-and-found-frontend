@@ -5,7 +5,7 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.css'
 class NavBarUI extends Component {
   render() {
     let button;
-    const {userState, onButtonClick} = this.props;
+    const {userState} = this.props;
     if (userState) {
       button = <button className="btn btn-default navbar-btn">Sign out</button>
     } else {

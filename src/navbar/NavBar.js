@@ -8,13 +8,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    onButtonClick: () => {
-      dispatch({
-        type: 'CHANGE_STATE'
-      })
-    }
-  }
+  return {}
 };
 
 const NavBar = connect(mapStateToProps, mapDispatchToProps)(NavBarUI);
