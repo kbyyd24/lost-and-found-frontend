@@ -1,6 +1,9 @@
 import {connect} from 'react-redux'
 import LoginUI from './LoginUI'
 import {login} from '../config/ActionNames'
+import {userServer} from '../config/ServerConfig'
+
+const {protocol, host, port, baseURI} = userServer;
 
 const fetchToLogin = logInUser => dispatch => {
   dispatch({type: login.pending});
@@ -13,7 +16,7 @@ const fetchToLogin = logInUser => dispatch => {
     method: 'POST',
     body: JSON.stringify(logInUser)
   };
-  const request = new Request('http://localhost:8080/user/login', requestInit);
+  const request = new Request(`${protocol}://${host}:${port}/${baseURI}/login`, requestInit);
   fetch(request)
     .then(response => {
       if (response.status === 200) {

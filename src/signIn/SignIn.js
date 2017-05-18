@@ -1,6 +1,9 @@
 import {connect} from 'react-redux'
 import SignInUI from './SignInUI'
 import {sign_in} from '../config/ActionNames'
+import {userServer} from '../config/ServerConfig'
+
+const {protocol, host, port, baseURI} = userServer;
 
 const mapStateToProps = (state) => {
   return {signInObj: state.user.signIn}
@@ -17,7 +20,7 @@ const fetchToSignIn = (signInUser) => dispatch => {
     method: 'POST',
     body: JSON.stringify(signInUser)
   };
-  const request = new Request('http://localhost:8080/user', postInit);
+  const request = new Request(`${protocol}://${host}:${port}/${baseURI}`, postInit);
   fetch(request)
     .then(response => {
       console.log(response);

@@ -1,7 +1,9 @@
 import {connect} from 'react-redux'
 import NavBarUI from './NavBarUI'
 import {log_out} from '../config/ActionNames'
+import {userServer} from '../config/ServerConfig'
 
+const {protocol, host, port, baseURI} = userServer;
 
 const fetchToLogOut = (username, token) => dispatch => {
   dispatch({type: log_out.pending});
@@ -13,7 +15,7 @@ const fetchToLogOut = (username, token) => dispatch => {
     headers: deleteHeaders,
     method: 'DELETE'
   };
-  const request = new Request(`http://localhost:8080/user/login/${username}`, requestInit);
+  const request = new Request(`${protocol}://${host}:${port}/${baseURI}/login/${username}`, requestInit);
   fetch(request)
     .then(response => {
       if (response.ok) {
