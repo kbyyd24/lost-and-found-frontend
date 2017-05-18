@@ -13,5 +13,6 @@ export const login = {
 export const log_out = {
   pending: 'log_out_pending',
   success: 'log_out_success',
-  failed: 'log_out_failed'
+  failed: 'log_out_failed',
+  clean: 'clean_log_out_message'
 };

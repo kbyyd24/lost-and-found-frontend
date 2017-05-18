@@ -42,6 +42,9 @@ const reducer = (state, action) => {
     case log_out.failed:
       newState.user.logout = {msg: action.msg, state: 400};
       return newState;
+    case log_out.clean:
+      newState.user.logout = {msg: null, state:0};
+      return newState;
     default:
       return state
   }

@@ -52,6 +52,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     logout: (username, token) => {
       dispatch(fetchToLogOut(username, token));
+    },
+    cleanLogoutMsg: () => {
+      dispatch({type: log_out.clean});
     }
   }
 };

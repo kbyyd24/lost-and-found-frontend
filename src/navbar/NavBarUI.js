@@ -9,6 +9,10 @@ class NavBarUI extends Component {
     this.props.logout(username, token);
   };
 
+  componentDidUpdate() {
+    setTimeout(this.props.cleanLogoutMsg, 4000)
+  }
+
   render() {
     let userButton, usernameHtml, logoutMsgHtml;
     const {username} = this.props;
