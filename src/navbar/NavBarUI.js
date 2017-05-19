@@ -5,7 +5,7 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.css'
 class NavBarUI extends Component {
 
   handleLogout = () => {
-    const {username, token}  = this.props;
+    const {username, token} = this.props;
     this.props.logout(username, token);
   };
 
@@ -18,7 +18,9 @@ class NavBarUI extends Component {
     const {username} = this.props;
     if (username === undefined) {
       userButton = (<li>
-        <button className="btn btn-success navbar-btn"><Link to={"/login"}>login</Link></button>
+        <Link to={"/login"}>
+          <button className="btn btn-success navbar-btn">login</button>
+        </Link>
       </li>);
     } else {
       userButton = (<li>
