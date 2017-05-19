@@ -7,46 +7,24 @@ const server = `${itemServer.protocol}://${itemServer.host}:${itemServer.port}/$
 
 const fetchToLoadLostItem = itemId => dispatch => {
   dispatch({type: load_lost_item.pending});
-  // let responseMap = new Map();
-  // responseMap.set(200, response => response.json()
-  //   .then(body => {
-  //     dispatch({
-  //       type: load_lost_item.success,
-  //       lostItem: body
-  //     })
-  //   }));
-  // responseMap.set(404, response => response.json()
-  //   .then(body => {
-  //     dispatch({
-  //       type: load_lost_item.failed,
-  //       msg: body.msg
-  //     })
-  //   }));
+  let responseMap = new Map();
+  responseMap.set(200, response => response.json()
+    .then(body => {
+      dispatch({
+        type: load_lost_item.success,
+        lostItem: body
+      })
+    }));
+  responseMap.set(404, response => response.json()
+    .then(body => {
+      dispatch({
+        type: load_lost_item.failed,
+        msg: body.msg
+      })
+    }));
   fetch(`${server}/${itemId}`)
     .then(response => {
-      // responseMap.get(response.status)(response);
-      if (response.ok) {
-        response.json()
-          .then(body => {
-            dispatch({
-              type: load_lost_item.success,
-              lostItem: body
-            })
-          })
-      } else if (response.status === 404) {
-        response.json()
-          .then(body => {
-            dispatch({
-              type: load_lost_item.failed,
-              msg: body.msg
-            })
-          })
-      } else {
-        dispatch({
-          type: load_lost_item.failed,
-          msg: 'unknown error'
-        })
-      }
+      responseMap.get(response.status)(response)
     })
 };
 
