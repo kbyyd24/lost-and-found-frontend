@@ -28,3 +28,15 @@ export const add_lost_item = {
   success: 'add_lost_item_success',
   failed: 'add_lost_item_failed'
 };
+
+export const load_lost_item = {
+  pending: 'load_lost_item_pending',
+  success: 'load_lost_item_success',
+  failed: 'load_lost_item_failed'
+};
+
+export const close_lost_item = {
+  pending: 'close_lost_item_pending',
+  success: 'close_lost_item_success',
+  failed: 'close_lost_item_failed'
+};

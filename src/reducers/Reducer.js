@@ -1,4 +1,4 @@
-import {sign_in, login, log_out, lost_page, add_lost_item} from '../config/ActionNames'
+import {sign_in, login, log_out, lost_page, add_lost_item, load_lost_item, close_lost_item} from '../config/ActionNames'
 import User from '../model/User'
 
 const reducer = (state, action) => {
@@ -56,16 +56,26 @@ const reducer = (state, action) => {
       newState.lostItemPage.state = {msg: action.msg, state: 400};
       return newState;
     case add_lost_item.pending:
+    case load_lost_item.pending:
       newState.openingLostItem.state = {msg: 'pending', state:100};
       newState.openingLostItem.lostItem = null;
       return newState;
     case add_lost_item.success:
+    case load_lost_item.success:
+    case close_lost_item.success:
       newState.openingLostItem.state = {msg: 'success', state: 200};
       newState.openingLostItem.lostItem = action.lostItem;
       return newState;
     case add_lost_item.failed:
+    case load_lost_item.failed:
       newState.openingLostItem.state = {msg: action.msg, state: 400};
       newState.openingLostItem.lostItem = null;
+      return newState;
+    case close_lost_item.pending:
+      newState.openingLostItem.state = {msg: 'pending', state: 100};
+      return newState;
+    case close_lost_item.failed:
+      newState.openingLostItem.state = {msg: action.msg, state: 400};
       return newState;
     default:
       return state
