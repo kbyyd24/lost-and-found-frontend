@@ -1,5 +1,4 @@
 import User from './model/User'
-import LostItem from './model/LostItem'
 
 let user = new User();
 
@@ -13,11 +12,9 @@ let lostItemPage = {
   lostItems
 };
 
-let lostItem = new LostItem();
-
 let openingLostItem = {
   state: {msg: null, state: 0},
-  lostItem
+  lostItem: {}
 };
 
 export default {user, lostItemPage, openingLostItem}
