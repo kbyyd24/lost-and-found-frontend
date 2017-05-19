@@ -22,3 +22,9 @@ export const lost_page = {
   success: 'lost_page_success',
   failed: 'lost_page_failed'
 };
+
+export const add_lost_item = {
+  pending: 'add_lost_item_pending',
+  success: 'add_lost_item_success',
+  failed: 'add_lost_item_failed'
+};

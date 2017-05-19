@@ -9,6 +9,7 @@ import NavBar from './navbar/NavBar'
 import Login from './login/Login'
 import SignIn from './signIn/SignIn'
 import Lost from './lost/Lost'
+import LostNew from './lost/LostNew'
 
 import initialState from './StateCreator'
 
@@ -23,7 +24,8 @@ class LostAndFound extends Component {
             <NavBar/>
             <Route path={"/login"} component={Login}/>
             <Route path={"/signIn"} component={SignIn}/>
-            <Route path={"/losts"} component={Lost}/>
+            <Route exact path={"/losts"} component={Lost}/>
+            <Route path={"/losts/new"} component={LostNew}/>
           </div>
         </BrowserRouter>
       </Provider>

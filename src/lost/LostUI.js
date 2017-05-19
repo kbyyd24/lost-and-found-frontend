@@ -34,7 +34,7 @@ class LostUI extends Component {
                className="btn btn-default">上一页</button>);
     const nextButton = (<button name={next} onClick={this.handleChangePage} type="button"
                                 className="btn btn-primary">下一页</button>);
-    const addItemButton = (<Link to={"new"}>
+    const addItemButton = (<Link to={"/losts/new"}>
       <button type="button" className="btn btn-success">丢失物品</button>
     </Link>);
     let className;
