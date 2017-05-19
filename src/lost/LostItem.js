@@ -34,7 +34,12 @@ const fetchToCloseItem = (itemId, username, token) => dispatch => {
 
 const mapStateToProps = state => {
   const {user, openingLostItem} = state;
-  return {username: user.username, token: user.token, lostItem: openingLostItem.lostItem}
+  return {
+    username: user.username,
+    token: user.token,
+    lostItem: openingLostItem.lostItem,
+    itemState: openingLostItem.state
+  }
 };
 
 const mapDispatchToProps = dispatch => {

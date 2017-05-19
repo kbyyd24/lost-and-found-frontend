@@ -6,7 +6,7 @@ class LostItemUI extends Component {
 
   componentWillMount() {
     const itemId = this.props.match.params.itemId;
-    if (itemId !== this.props.lostItem.id) {
+    if (!this.props.lostItem || itemId !== this.props.lostItem.id) {
       this.props.loadItem(itemId);
     }
   }
@@ -18,7 +18,16 @@ class LostItemUI extends Component {
   };
 
   render() {
-    const {username, lostItem} = this.props;
+    const {username, lostItem, itemState} = this.props;
+    if (itemState.state === 100) {
+      return (<div className="container">
+        <span className="alert alert-info col-lg-12 text-center">{itemState.msg}</span>
+      </div>)
+    } else if (itemState.state === 400) {
+      return (<div className="container">
+        <span className="alert alert-danger col-lg-12 text-center">{itemState.msg}</span>
+      </div>)
+    }
     const {
       stateHtml, titleHtml, itemNameHtml, dateHtml,
       descriptionHtml, buttonHtml, closeButtonHtml
