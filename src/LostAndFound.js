@@ -26,7 +26,7 @@ class LostAndFound extends Component {
             <Route path={"/login"} component={Login}/>
             <Route path={"/signIn"} component={SignIn}/>
             <Route exact path={"/losts"} component={Lost}/>
-            <Route path={"/losts/new"} component={LostNew}/>
+            <Route path={"/lost/new"} component={LostNew}/>
             <Route path={"/losts/:itemId"} component={LostItem}/>
           </div>
         </BrowserRouter>
