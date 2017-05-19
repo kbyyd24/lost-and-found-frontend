@@ -57,7 +57,7 @@ class LostUI extends Component {
       const displayDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
       return (
         <li key={lostItem.id} className="list-group-item">
-          <Link to={`/lost/${lostItem.id}`}>
+          <Link to={`/losts/${lostItem.id}`}>
             <h4 className="list-group-item-heading">{lostItem.title}</h4>
             <p className="list-group-item-text">创建时间: {displayDate}</p>
           </Link>
