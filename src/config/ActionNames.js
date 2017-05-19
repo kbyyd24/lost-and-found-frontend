@@ -40,3 +40,9 @@ export const close_lost_item = {
   success: 'close_lost_item_success',
   failed: 'close_lost_item_failed'
 };
+
+export const update_lost_item = {
+  pending: 'update_lost_item_pending',
+  success: 'update_lost_item_success',
+  failed: 'update_lost_item_failed'
+}

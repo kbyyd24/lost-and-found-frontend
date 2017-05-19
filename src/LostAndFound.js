@@ -11,6 +11,7 @@ import SignIn from './signIn/SignIn'
 import Lost from './lost/Lost'
 import LostNew from './lost/LostNew'
 import LostItem from './lost/LostItem'
+import LostItemUpdate from './lost/LostItemUpdate'
 
 import initialState from './StateCreator'
 
@@ -27,7 +28,8 @@ class LostAndFound extends Component {
             <Route path={"/signIn"} component={SignIn}/>
             <Route exact path={"/losts"} component={Lost}/>
             <Route path={"/lost/new"} component={LostNew}/>
-            <Route path={"/losts/:itemId"} component={LostItem}/>
+            <Route exact path={"/losts/:itemId"} component={LostItem}/>
+            <Route path={"/losts/:itemId/update"} component={LostItemUpdate}/>
           </div>
         </BrowserRouter>
       </Provider>

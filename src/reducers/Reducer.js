@@ -72,10 +72,15 @@ const reducer = (state, action) => {
       newState.openingLostItem.lostItem = null;
       return newState;
     case actionName.close_lost_item.pending:
+    case actionName.update_lost_item.pending:
       newState.openingLostItem.state = {msg: 'pending', state: 100};
       return newState;
     case actionName.close_lost_item.failed:
+    case actionName.update_lost_item.failed:
       newState.openingLostItem.state = {msg: action.msg, state: 400};
+      return newState;
+    case actionName.update_lost_item.success:
+      newState.openingLostItem.state = {msg: actionName.update_lost_item.success, state: 200};
       return newState;
     default:
       return state

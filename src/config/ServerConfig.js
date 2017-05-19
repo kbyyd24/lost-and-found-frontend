@@ -6,6 +6,7 @@ export const userServer = {
 };
 
 export const itemServer = {
+  path: 'http://localhost:4000/item',
   protocol: 'http',
   host: 'localhost',
   port: '4000',

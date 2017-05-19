@@ -45,8 +45,8 @@ class LostItemUI extends Component {
         <div className="col-lg-12">{itemNameHtml}{dateHtml}</div>
         <div className="col-lg-12">{descriptionHtml}</div>
         <div>
-          <span className="left">{closeButtonHtml}</span>
-          <span className="right">{buttonHtml}</span>
+          <span>{closeButtonHtml}</span>
+          <span>{buttonHtml}</span>
         </div>
       </div>
     )
