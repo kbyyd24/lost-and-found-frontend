@@ -19,14 +19,18 @@ class LostItemUI extends Component {
 
   render() {
     const {username, lostItem, itemState} = this.props;
+    let alertHtml;
     if (itemState.state === 100) {
-      return (<div className="container">
+      alertHtml = (<div className="container">
         <span className="alert alert-info col-lg-12 text-center">{itemState.msg}</span>
       </div>)
     } else if (itemState.state === 400) {
-      return (<div className="container">
+      alertHtml = (<div className="container">
         <span className="alert alert-danger col-lg-12 text-center">{itemState.msg}</span>
       </div>)
+    }
+    if (!lostItem) {
+      return alertHtml;
     }
     const {
       stateHtml, titleHtml, itemNameHtml, dateHtml,
@@ -35,6 +39,7 @@ class LostItemUI extends Component {
     this.buildHtmlComponents(lostItem, username);
     return (
       <div className="container">
+        {alertHtml}
         <div className="col-lg-2">{stateHtml}</div>
         <div className="col-lg-10">{titleHtml}</div>
         <div className="col-lg-12">{itemNameHtml}{dateHtml}</div>
@@ -63,7 +68,9 @@ class LostItemUI extends Component {
         buttonHtml = <Link to={`/losts/${lostItem.id}/update`}>
           <button className="btn btn-success">更新</button>
         </Link>;
-        closeButtonHtml = <button className="btn btn-danger">关闭</button>
+        if (lostItem.state === 'enable') {
+          closeButtonHtml = <button onClick={this.handleCloseItem} className="btn btn-danger">关闭</button>
+        }
       } else {
         buttonHtml = <Link to={`/losts/${lostItem.id}/returns/${username}`}>
           <button className="btn btn-primary">认领</button>

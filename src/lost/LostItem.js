@@ -1,9 +1,10 @@
 import {connect} from 'react-redux'
 import LostItemUI from './LostItemUI'
 import {itemServer} from '../config/ServerConfig'
-import {load_lost_item} from '../config/ActionNames'
+import {load_lost_item, close_lost_item} from '../config/ActionNames'
 
-const server = `${itemServer.protocol}://${itemServer.host}:${itemServer.port}/${itemServer.baseURI}/lost`;
+const server =
+  `${itemServer.protocol}://${itemServer.host}:${itemServer.port}/${itemServer.baseURI}/lost`;
 
 const fetchToLoadLostItem = itemId => dispatch => {
   dispatch({type: load_lost_item.pending});
@@ -29,7 +30,35 @@ const fetchToLoadLostItem = itemId => dispatch => {
 };
 
 const fetchToCloseItem = (itemId, username, token) => dispatch => {
-
+  dispatch({type:close_lost_item.pending});
+  const requestHeaders = new Headers({
+    username: username,
+    'user-token': token
+  });
+  const requestInit = {
+    headers: requestHeaders,
+    method: 'DELETE'
+  };
+  fetch(new Request(`${server}/${itemId}`, requestInit))
+    .then(response => {
+      if (response.ok) {
+        response.json()
+          .then(body => {
+            dispatch({
+              type: close_lost_item.success,
+              lostItem: body
+            })
+          })
+      } else {
+        response.json()
+          .then(body => {
+            dispatch({
+              type: close_lost_item.failed,
+              msg: body.msg
+            })
+          })
+      }
+    })
 };
 
 const mapStateToProps = state => {
